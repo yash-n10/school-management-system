@@ -1,0 +1,189 @@
+@media (max-width: 1199px) {
+	.banner.jumbotron {
+		padding: 5px 10px;
+	}
+	.round-silver div.round {
+		width: 70px;
+		height: 70px;
+	}
+	.send-msg {
+		margin-top: 25px;
+	}
+	.search-minor , .search-major {
+		width: 192px !important;
+	}
+	.tutor-image div {
+		padding: 0;
+	}
+	.search-send-msg, .search-classmate-send {
+		font-size: 11px;
+	}
+	.user-lists-header h5 {
+		font-size: 12px;
+	}
+	.tutor_image {
+		height: 99px;
+	}
+}
+
+@media (max-width: 991px) {
+	.round-silver div.round {
+		width: 60px;
+		height: 60px;
+		margin-top: 15px;
+	}
+	.atlas .atlas-group .single-atlas-element {
+		padding: 15px 8px;
+	}
+	.top-collapse {
+		margin-top: 20px;
+	}
+	.top-collapse .input-group {
+		margin-top: 20px;
+	}
+	.secondary-menu {
+		float: right;
+	}
+	.secondary-menu > li > a {
+		padding: 10px 5px 10px 42px;
+	}
+	.search-container.input-group[class*="col-"] {
+		float: right;
+		margin-left: 70px;
+	}
+	.view-profile {
+		font-size: 9px;
+		margin-top: 76px;
+		margin-left: -5px;
+		padding: 6px 5px;
+	}
+	.view-classmate-profile {
+		font-size: 9px;
+		margin-top: 60px;
+		margin-left: -5px;
+		padding: 6px 5px;
+	}
+	.send-msg {
+		font-size: 10px;
+		margin-top: 13px;
+		padding: 6px 5px;
+	}
+	.contact-seller-btn {
+		font-size: 11px !important;
+	}
+	.tutor_image {
+		height: 52px;
+	}
+}
+
+@media (max-width: 767px) {
+	.atlas .atlas-group, .atlas .atlas-group .single-atlas-element {
+		border: none;
+	}
+	.atlas .atlas-group .single-atlas-element {
+		padding: 10px 0;
+	}
+	.about-right-container {
+		margin-top: 20px;
+		padding-top: 10px;
+		border-top: 1px solid #eee;
+	}
+	.container-xs-center {
+		float: none !important;
+		text-align: center;
+	}
+	.top-bar .social-links {
+		padding: 5px 0;
+		margin: 5px 0;
+		border-bottom: 1px solid #e1e1e1;
+	}
+	.main-navbar {
+		margin: 5px 0;
+	}
+	.secondary-menu > li > a {
+		margin: 10px;
+	}
+	.secondary-menu {
+		float: none;
+	}
+	.search-container.input-group[class*="col-"] {
+		float: none;
+	}
+	.tutor-rank , .rank{
+		margin-top: 10px;
+		padding: 0;	
+	}
+	.send {
+		padding: 0;
+	}
+	.view-profile, .view-classmate-profile {
+		font-size: 10px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: -2px;
+		padding: 6px 12px;
+	}
+	.single-tutor .tutor-image img {
+		margin: 0 !important;
+	}
+	.tutor-image .col-xs-12 {
+		padding: 0;	
+	}
+	.send-msg {
+		font-size: 10px;
+		padding: 6px 12px;
+	}
+	.age-slider h5 , .age-slider h6 , .hourly-slider h5, .hourly-slider h6{
+		margin-left: 0px;
+	}
+	.minor-select, .major-select {
+		margin-left: 0px !important;
+	}
+	.tutor_image {
+		height: auto;
+	}
+	
+}
+
+@media (max-width: 400px) {
+	.round-silver div.round {
+		width: 50px;
+		height: 50px;
+	}
+	.single-about-element .col-xs-10, .single-atlas-element .col-xs-10 {
+		padding-right: 0;
+		padding-left: 25px;
+	}
+	.single-post .user-image {
+		padding: 0;
+	}
+}
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        float: right;
+    }
+    .login-form {
+            margin-top: 35px;
+            margin-bottom: 0;
+    }
+    .social-links {
+            float: left;
+    }
+    .main-navbar {
+            float: right;
+    }
+}
+@media (min-width: 992px) {
+    .secondary-menu {
+            margin-left: 50px;
+    }
+    .search-container.input-group[class*="col-"] {
+            float: right;
+    }
+}
+@media (min-width: 1200px) {
+    .banner {
+		background-size: 100%;
+	}
+}

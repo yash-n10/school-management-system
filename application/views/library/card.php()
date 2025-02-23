@@ -1,0 +1,104 @@
+<?php
+    include(APPPATH.'third_party/php-barcode-generator/src/BarcodeGenerator.php');
+    include(APPPATH.'third_party/php-barcode-generator/src/BarcodeGeneratorPNG.php');
+    include(APPPATH.'third_party/php-barcode-generator/src/BarcodeGeneratorSVG.php');
+    include(APPPATH.'third_party/php-barcode-generator/src/BarcodeGeneratorHTML.php');
+    $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+    $generatorSVG = new Picqer\Barcode\BarcodeGeneratorSVG();
+    $generatorHTML = new Picqer\Barcode\BarcodeGeneratorHTML();
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>I-Card</title>
+	<style type="text/css">
+		.row
+		{
+			width: 100%;
+
+		}
+		.col-md-6
+		{
+			width: 48%;
+			height: 150px;
+			border:1px solid #000;
+			border-radius: 5px;
+		}
+	</style>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<?php
+		foreach ($students as $key => $value) {
+			$f_name =$value->first_name;
+			$m_name =$value->middle_name;
+			$l_name =$value->last_name;
+			$class =$value->class_id;
+			$section =$value->section_id;
+			$name = $f_name.' '.$m_name.' '.$l_name;
+			$clas = $this->dbconnection->select("class", "class_name", "status='Y' AND id=$class");
+			$sec = $this->dbconnection->select("section", "sec_name", "status='Y' AND id=$section");
+		?>
+		<div class="row">
+			<div class="col-md-6" style="position: absolute;">				
+				<div class="header" style="height: 19px;text-align: center;">
+					<h4 style="padding: 0px 0px 0px 0px;margin-top: 2px;color: red;"><?php echo strtoupper($school[0]->description);?></h4>
+				</div>	
+				<hr>
+				<div class="content">
+					<div class="logo" style="position: absolute;height: 90px;width: 25%;">
+						<?php
+						$logofile = 'assets/img/' . $this->session->userdata('school_id') . '.JPG';
+		                if (file_exists($logofile)) 
+		                {
+		                	?>
+		                    <img width='70px' src="assets/img/<?php echo $school[0]->id;?>.JPG">
+		                	<?php 
+		            	}
+						?>
+					</div>
+					<div class="details" style="margin-left: 95px;height: 90px;font-size: 10px;">
+						<b>NAME : </b>&nbsp;<span><?php echo strtoupper($name);?></span>
+						<p><b>CLASS : </b>&nbsp;<span><?php echo $clas[0]->class_name;?></span></p>
+						<p><b>SECTION : </b>&nbsp;<span><?php echo $sec[0]->sec_name;?></span></p>
+						<p><b>ADMISSION NO. : </b>&nbsp;<span><?php echo $value->admission_no;?>	</span></p>
+					</div>
+				</div>
+				<div class="footer" style="margin-bottom: 0px;">
+					<div class="barcode" style="height: 20px;width: 20%;margin-left: 160px;">
+	                    <?php
+	                        $code = base64_encode($generatorPNG->getBarcode($value->admission_no, $generatorPNG::TYPE_CODE_39));
+	                    ?>
+	                    <img style="width: 150px;height: 20px;" src="data:image/png;base64,<?php echo $code;?>"> 
+	                </div>
+	            </div>
+			</div>
+			<div class="col-md-6" style="margin-left: 50%;">
+				<div class="header_back" style="text-align: center;">
+					<b style="font-size: 14px;">INSTRUCTIONS</b>
+					<hr>
+				</div>
+				<div class="content_back" style="font-size: 8px;">
+					<ul>
+						<li>This ID Card is Property of School and is non-transferable.</li>
+						<li>For Security and Identification purpose, this card must be displayed as and when it is demanded.</li>
+						<li>Loss or theft of the card must be immediately reported to the Issuing Authority.</li>
+						<li>If this card is being found unattended, kindely return/submit it to the school Education office.</li>
+					</ul>
+				</div>
+				<div class="footer_back" style="font-size: 8px;">
+					<span>&nbsp;&nbsp;<b>ADDRESS :</b> &nbsp; <?php echo $school[0]->address;?></span>
+					<p style="margin:  0px 0px 0px 0px;"><span>&nbsp;&nbsp;<b>CONTACT :</b> &nbsp; <?php echo $school[0]->phone;?></span></p>
+					<p style="margin: 0px 0px 0px 0px;"><span>&nbsp;&nbsp;<b>E-MAIL :</b> &nbsp; <?php echo $school[0]->email;?></span></p>
+				</div>	
+			</div>
+		</div>
+		<div class="cut">
+			<span>&#9986;----------------------------------------------------------------------------------------------------------------------------------</span> 
+		</div>
+		<?php }?>		
+	</div>
+</body>
+</html>

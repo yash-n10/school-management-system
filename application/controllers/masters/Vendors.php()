@@ -1,0 +1,60 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Vendors extends MY_ListController
+{
+	public function __construct()
+	{
+		parent::__construct();
+
+		// Access Control
+		switch($this->session->userdata('login_type')){
+                    case 'appadmin':
+                                        $this->right_access = 'CRUD';
+                                        break;
+                    case 'admin':
+                                        $this->right_access = 'CRUD';
+                                        break;
+                    case 'principal':
+                                        $this->right_access = '-R--';
+                                        break;
+                    case 'office':
+                                        $this->right_access = 'CR--';
+                                        break;
+                    default:
+                                        $this->right_access = '----';
+                                        redirect(base_url(), 'refresh');
+                }
+
+		$this->page_title = 'Vendors';
+		$this->rec_type = 'Vendor';
+		$this->rec_types = 'Vendors';
+		$this->section = 'masters';
+		$this->dbtable = 'vendors';
+		$this->display_columns = array('id' => 'ID', 'vendor_name' => 'Name', 'vendor_phone' => 'Phone', 'vendor_fax' => 'Fax',
+				'vendor_website' => 'Website', 'vendor_email' => 'Email', 'vendor_skype' => 'Skype', 'vendor_address' => 'Address',
+				);
+		$this->edit_columns = array(
+				'vendor_name' => array('disp' => 'Name', 'type' => 'text', 'required' => TRUE),
+				'vendor_phone' => array('disp' => 'Phone', 'type' => 'tel'),
+				'vendor_fax' => array('disp' => 'Fax', 'type' => 'tel'),
+				'vendor_website' => array('disp' => 'Website', 'type' => 'text'),
+				'vendor_email' => array('disp' => 'Email', 'type' => 'email'),
+				'vendor_skype' => array('disp' => 'Skype', 'type' => 'text'),
+				'vendor_address' => array('disp' => 'Address', 'type' => 'text'),
+				);
+		$this->search_columns = array(
+				'alpha_num' => array(
+					'vendor_name',
+					'vendor_email',
+					),
+				'numeric' => array(
+					'vendor_phone',
+					),
+				);
+		$this->rec_key = 'id';
+		$this->data_table = $this->dbtable . ' AS t1';
+		$this->data_select = '*';
+		$this->data_select_where = '';
+	}
+}
